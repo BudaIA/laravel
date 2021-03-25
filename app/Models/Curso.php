@@ -16,4 +16,9 @@ class Curso extends Model
     (Funcionamiento inverso a fillable)
  */
     protected $guarded = [];
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
 }

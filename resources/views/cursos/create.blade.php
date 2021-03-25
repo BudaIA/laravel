@@ -14,7 +14,7 @@
             <input type="text" name="name" value="{{old('name')}}">
         </label>
 
-        @error('name')
+         @error('name')
           
             <br>
             <small>*{{$message}}</small>

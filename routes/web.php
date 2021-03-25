@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CursoController;
+use App\Mail\ContactanosMailer;
+use Illuminate\Support\Facades\Mail;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,9 +17,9 @@ use App\Http\Controllers\CursoController;
 |
 */
 
-Route::get('/', HomeController::class);
+Route::get('/', HomeController::class)->name('home');
 
-Route::get('cursos', [CursoController::class, 'index'])->name('cursos.index');
+/* Route::get('cursos', [CursoController::class, 'index'])->name('cursos.index');
 
 Route::get('cursos/create', [CursoController::class, 'create'])->name('cursos.create');
 
@@ -30,12 +32,18 @@ Route::get('cursos/{curso}/edit', [CursoController::class, 'edit'])->name('curso
 Route::put('cursos/{curso}', [CursoController::class, 'update'])->name('cursos.update');
 
 Route::delete('cursos/{curso}', [CursoController::class, 'destroy'])->name('cursos.destroy');
+ */
 
-/*Route::get('cursos/{curso}/{categoria?}', function ($curso, $categoria = null) {
-    if($categoria){
-        return "Bienvenido al curso $curso, de la categoria $categoria";
-    }else{
-        return "Bienvenido al curso: $curso";
-    }
-         
-});*/
+
+ Route::resource('cursos',CursoController::class);
+
+ Route::view('nosotros', 'nosotros')->name('nosotros');
+
+ Route::get('contactanos', function () {
+    
+    $correo = new ContactanosMailer();
+    Mail::to('darwinhaya@gmail.com')->send($correo);
+
+    return "Mensaje de correo envaido";
+
+ });

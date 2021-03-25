@@ -6,12 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title')</title>
     <!-- favivon -->
+    <style>
+        .active{
+            color: red;
+            font-weight: bold;
+        }
+    </style>
 </head>
 <body>
-    <!-- header -->
+   @include('layouts.partials.header')
     <!-- navigation -->
     @yield('content')
-
-    <!-- footer-->
+    
+    @include('layouts.partials.footer')
+        
 </body>
 </html>

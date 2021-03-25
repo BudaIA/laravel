@@ -39,12 +39,10 @@ class CursoController extends Controller
         // return $request->all();
     }
 
-    public function show($id){
+    public function show(Curso $curso){
         //compact('curso'); --> esta es otra manera de enviar las
         // return view('cursos.show',compact(''curso));
-        $curso = Curso::find($id);
-
-        return view('cursos.show',compact('curso'));
+         return view('cursos.show',compact('curso'));
     }
 
     public function edit(Curso $curso){      
